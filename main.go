@@ -1,8 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+	"github.com/bahull/go_visualizer/telemetry"
+	"github.com/bahull/go_visualizer/visualizer"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
-	fmt.Println("Testing here, 123")
+	interval := time.Nanosecond
+	fmt.Println("Starting Go Runtime Visualizer (CLI Mode)")
+
+	for {
+		stats := telemetry.Collect()
+		visualizer.PrintStats(stats)
+		time.Sleep(interval)
+	}
 }
